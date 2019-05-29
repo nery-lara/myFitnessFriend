@@ -1,1 +1,1 @@
-"# myFintessFriend" 
+My Fitness Friend

@@ -1,0 +1,28 @@
+{
+  "name": "fitnessfriend",
+  "version": "1.0.0",
+  "description": "An app that helps you track your fitness",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nery-lara/myFitnessFriend.git"
+  },
+  "keywords": [
+    "fitness"
+  ],
+  "author": "Nery Lara, Jason Orozco, Angel Castro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nery-lara/myFitnessFriend/issues"
+  },
+  "homepage": "https://github.com/nery-lara/myFitnessFriend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "logger": "0.0.1",
+    "moment": "^2.24.0",
+    "nodemon": "^1.19.1"
+  }
+}

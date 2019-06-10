@@ -27,7 +27,7 @@ module.exports = function(app) {
                 if(err) {
                     return res.status(401).json({
                         message: 'authentication failed'
-                    }) 
+                    })
                 }
                 if(result) {
                     const token = jwt.sign({
@@ -43,10 +43,10 @@ module.exports = function(app) {
                 }
                 res.status(401).json({
                     message: 'authentication failed'
-                }) 
+                })
             })
         })
-        
+
     })
     app.post('/signup', (req, res) => {
         console.log(req.body)
@@ -103,5 +103,5 @@ module.exports = function(app) {
             })
         })
     })
-    
+
 }

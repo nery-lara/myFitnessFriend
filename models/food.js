@@ -6,7 +6,8 @@ const foodSchema = mongoose.Schema({
     calories: {type: Number, required: true},
     protien: Number,
     carbs: Number,
-    fat: Number
+    fat: Number,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
 module.exports = mongoose.model('Food',foodSchema)

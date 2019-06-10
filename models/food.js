@@ -4,9 +4,10 @@ const foodSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
     calories: {type: Number, required: true},
-    protien: Number,
+    protein: Number,
     carbs: Number,
-    fat: Number,
+    fats: Number,
+    time: String,
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 

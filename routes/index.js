@@ -4,14 +4,13 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const authCheck = require('../middleware/authcheck')
 
 module.exports = function(app) {
     app.get('/', (req, res) => {
         res.render('pages/index')
     })
 
-    app.get('/home', authCheck, (req, res) => {
+    app.get('/home', (req, res) => {
         res.render('pages/home')
     })
 

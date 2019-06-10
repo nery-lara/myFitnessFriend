@@ -6,7 +6,8 @@ const strengthSchema = mongoose.Schema({
     weight: Number,
     duration: Number,
     sets: Number,
-    reps: Number
+    reps: Number,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
 module.exports = mongoose.model('Strength', strengthSchema)

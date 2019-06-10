@@ -10,10 +10,6 @@ module.exports = function(app) {
         res.render('pages/index')
     })
 
-    app.get('/home', (req, res) => {
-        res.render('pages/home')
-    })
-
     app.post('/login', (req, res) => {
         console.log(req.body)
         User.find({email: req.body.email}).exec().then(user => {
@@ -32,13 +28,10 @@ module.exports = function(app) {
                     const token = jwt.sign({
                         email: user[0].email,
                         userId: user[0]._id
-                    },process.env.JWT_KEY, {
+                    },'secretkey', {
                         expiresIn: "2h"
                     })
-                    return res.status(200).json({
-                        message: 'Authentication successful',
-                        token: token
-                    })
+                    return res.status(200).render('pages/home')
                 }
                 res.status(401).json({
                     message: 'authentication failed'
@@ -69,9 +62,7 @@ module.exports = function(app) {
                         })
                         user.save().then(result => {
                             console.log(result)
-                            res.status(201).json({
-                                message: 'user created'
-                            })
+                            res.status(201).render('pages/home')
                         }).catch(err => {
                             console.log(err)
                             res.status(500).json({

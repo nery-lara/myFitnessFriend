@@ -7,6 +7,7 @@ const strengthSchema = mongoose.Schema({
     sets: Number,
     reps: Number,
     time: String,
+    date: { type: Date, default: new Date(), required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 

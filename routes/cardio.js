@@ -15,6 +15,7 @@ module.exports = function (app) {
             name: req.body.name,
             duration: req.body.duration,
             distance: req.body.distance,
+            date: req.body.date,
             time: req.body.time,
         })
         User.findOneAndUpdate({ email: req.body.email }, { $push: { 'exercises.cardio': cardio._id } }).exec().then(user => {

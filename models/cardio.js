@@ -6,6 +6,7 @@ const cardioSchema = mongoose.Schema({
     duration: String,
     distance: Number,
     time: String,
+    date: { type: Date, default: new Date(), required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 

@@ -17,22 +17,25 @@ $.ajax({
         var cardiolist = document.getElementById('cardiolist')
 
         for (var i = 0; i < data.foods.length; i++) {
-            var item = document.createElement('li');
-            item.appendChild(document.createTextNode(data.foods[i].name));
-            foodlist.appendChild(item);
+            var item = document.createElement('li')
+            item.className += " list-group-item"
+            item.appendChild(document.createTextNode(data.foods[i].name))
+            foodlist.appendChild(item)
         }
 
         for (var i = 0; i < data.cardio.length; i++) {
-            var item = document.createElement('li');
-            item.appendChild(document.createTextNode(data.cardio[i].name));
-            cardiolist.appendChild(item);
+            var item = document.createElement('li')
+            item.className += " list-group-item"
+            item.appendChild(document.createTextNode(data.cardio[i].name))
+            cardiolist.appendChild(item)
         }
 
 
         for (var i = 0; i < data.strength.length; i++) {
-            var item = document.createElement('li');
-            item.appendChild(document.createTextNode(data.strength[i].name));
-            strengthlist.appendChild(item);
+            var item = document.createElement('li')
+            item.className += " list-group-item"
+            item.appendChild(document.createTextNode(data.strength[i].name))
+            strengthlist.appendChild(item)
         }
 
 

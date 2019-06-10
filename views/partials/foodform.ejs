@@ -1,21 +1,25 @@
-<form action="/food" method="post" enctype='application/x-www-form-urlencoded'>
+<form id="foodform" action="/food" method="post" enctype='application/x-www-form-urlencoded'>
     <div class="form-row">
-        <div class="form-group col">
+        <div class="form-group col-md-9">
             <label for="name">Food Name</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Food Name">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="calories">Calories</label>
+            <input type="number" name="calories" id="calories" class="form-control" placeholder="Calories">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="protein">Email</label>
+            <label for="protein">Protein</label>
             <input type="number" name="protein" id="protein" class="form-control" placeholder="Protein">
         </div>
         <div class="form-group col-md-3">
-            <label for="carbs">Birthdate</label>
+            <label for="carbs">Carbs</label>
             <input type="number" name="carbs" id="carbs" class="form-control" placeholder="Carbs">
         </div>
         <div class="form-group col-md-3">
-            <label for="fats">Birthdate</label>
+            <label for="fats">Fats</label>
             <input type="number" name="fats" id="fats" class="form-control" placeholder="Fats">
         </div>
         <div class="form-group col-md-3">
@@ -25,3 +29,27 @@
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
+
+<script>
+    $(function () {
+            $('#foodform').on('submit', function (e) {
+                e.preventDefault()
+                var formdata = $('#foodform').serializeArray()
+                console.log(formdata)
+                formdata.push({name:"email", value: localStorage.getItem("email")})
+                $.ajax({
+                    type: 'post',
+                    url: '/food',
+                    data: formdata,
+                    success: function () {
+                        alert("food submitted")
+                    }
+                })
+                $(':input', '#foodform')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+
+            })
+        })
+
+</script>

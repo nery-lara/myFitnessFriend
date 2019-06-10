@@ -5,8 +5,7 @@ const User = require('../models/user')
 const Food = require('../models/food')
 const Strength = require('../models/strength')
 const Cardio = require('../models/cardio')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+
 
 module.exports = function (app) {
     app.post('/food', (req, res) => {
@@ -44,6 +43,22 @@ module.exports = function (app) {
             res.status(500).json({
                 error: err
             })
+        })
+    })
+
+    app.delete("/food/:foodid",(req, res) => {
+        console.log(req.params.foodid)
+        Food.findOneAndDelete({_id: req.params.foodid}).exec().then(food => {
+            
+            User.findOneAndUpdate({_id: food.user}, {$pull: {foods: food._id}}).then(user => {
+                console.log("removed food from user")
+            }).catch(err => {
+                console.log('cant update user')
+                console.log(err)
+            })
+        }).catch(err => {
+            console.log('cant delete food')
+            console.log(err)
         })
     })
 }

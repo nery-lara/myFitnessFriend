@@ -6,9 +6,9 @@
     </button>
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="username" aria-label="username">
-            <input class="form-control mr-sm-2" type="password" placeholder="password" aria-label="password">
+        <form action="/login" method="post"  enctype='application/x-www-form-urlencoded' class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" name="email" placeholder="username" aria-label="username">
+            <input class="form-control mr-sm-2" type="password" name="password" placeholder="password" aria-label="password">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
         </form>
     </div>

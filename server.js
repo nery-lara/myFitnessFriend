@@ -11,6 +11,9 @@ var dbUrl = 'mongodb://localhost:27017/fitnessfriend'
 mongoose.connect(dbUrl, {useNewUrlParser: true})
 app.use(logger)
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')

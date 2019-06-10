@@ -1,32 +1,32 @@
-<form >
+<form action="/signup" method="post"  enctype='application/x-www-form-urlencoded'>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="firstname">First Name</label>
-            <input type="text"  id="firstname" class="form-control" placeholder="First Name">
+            <input type="text"  name="firstname" id="firstname" class="form-control" placeholder="First Name">
         </div>
         <div class="form-group col-md-6">
             <label for="signupEmail">Last Name</label>
-            <input type="text" id="lastname" class="form-control" placeholder="Last Name">
+            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="signupEmail">Email</label>
-            <input type="email" id="signupEmail" class="form-control" placeholder="Email">
+            <input type="email" name="email" id="signupEmail" class="form-control" placeholder="Email">
         </div>
         <div class="form-group col-md-6">
             <label for="birthdate">Birthdate</label>
-            <input type="date" id="birthdate" class="form-control" placeholder="birthdate">
+            <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="birthdate">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="signuppassword">Password</label>
-            <input type="password" id="signuppassword" class="form-control" placeholder="password">
+            <input type="password" name="password" id="signuppassword" class="form-control" placeholder="password">
         </div>
         <div class="form-group col-md-6">
             <label for="signuprep">Re-enter password</label>
-            <input type="password" id="signuprep" class="form-control" placeholder="Re-enter password">
+            <input type="password" name="passwordconfirm" id="signuprep" class="form-control" placeholder="Re-enter password">
         </div>
     </div>
     <div class="form-group">
@@ -37,5 +37,5 @@
             </label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Sign up</button>
 </form>

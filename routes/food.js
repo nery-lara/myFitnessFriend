@@ -17,6 +17,7 @@ module.exports = function (app) {
             protein: req.body.protein,
             carbs: req.body.carbs,
             fats: req.body.fats,
+            date: req.body.date,
             time: req.body.time,
         })
         User.findOneAndUpdate({email: req.body.email}, {$push: {foods: food._id} }).exec().then(user => {

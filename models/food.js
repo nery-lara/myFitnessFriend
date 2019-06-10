@@ -8,6 +8,7 @@ const foodSchema = mongoose.Schema({
     carbs: Number,
     fats: Number,
     time: String,
+    date: { type: Date, default: new Date(), required: true},
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 

@@ -33,6 +33,7 @@
             var formdata = $('#strengthform').serializeArray()
             console.log(formdata)
             formdata.push({ name: "email", value: localStorage.getItem("email") })
+            formdata.push({ name: "date", value: localStorage.getItem("date") })
             $.ajax({
                 type: 'post',
                 url: '/strength',
@@ -44,6 +45,10 @@
             $(':input', '#strengthform')
                 .not(':button, :submit, :reset, :hidden')
                 .val('')
+            var strengthlist = document.getElementById('strengthlist')
+            var item = document.createElement('li');
+            item.appendChild(document.createTextNode(formdata[0].value));
+            strengthlist.appendChild(item);
 
         })
     })

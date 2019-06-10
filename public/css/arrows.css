@@ -1,0 +1,19 @@
+.arrow {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  padding: 8px 16px;
+background-color: #f1f1f1;
+  color: black;
+}
+
+.arrow:hover {
+  background-color: rgb(79, 62, 231);
+  color: black;
+}
+
+
+
+.round {
+  border-radius: 50%;
+}

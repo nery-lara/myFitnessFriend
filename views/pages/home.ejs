@@ -3,27 +3,43 @@
 <% include ../partials/head %>
 
 <body>
-    <% include ../partials/navbar %>
+    <nav class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+    
+        <a class="nav-item nav-link active" id="pills-daily-tab" data-toggle="pill" href="#pills-daily" role="tab"
+            aria-controls="pills-daily" aria-selected="true">Daily</a>
+    
+    
+        <a class="nav-item nav-link" id="pills-weekly-tab" data-toggle="pill" href="#pills-weekly" role="tab"
+            aria-controls="pills-weekly" aria-selected="false">Weekly</a>
+    
+    
+        <a class="nav-item nav-link" id="pills-progress-tab" data-toggle="pill" href="#pills-progress" role="tab"
+            aria-controls="pills-progress" aria-selected="false">Progress</a>
+    
+    </nav>
     <div class="container">
+        <div class="row mb-3">
+            <% include ../partials/arrows %>
+        </div>
         <div class="row">
-            <div class="col-md-6">
-                <h2>This is the homepage</h2>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-daily" role="tabpanel" aria-labelledby="pills-daily-tab">
+                    <% include ../partials/daily %>
+                    <% include ../partials/log %>
+                </div>
+                <div class="tab-pane fade" id="pills-weekly" role="tabpanel" aria-labelledby="pills-weekly-tab">
+                    <% include ../partials/weekly %>    
+                </div>
+                <div class="tab-pane fade" id="pills-progress" role="tabpanel" aria-labelledby="pills-progress-tab">
+                    <% include ../partials/progress %>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>This is the homepage</h2>
-            </div>
-        </div>
-        <div class="row">
-            <% include ../partials/foodform %>
-        </div>
-        <div class="row">
-            <% include ../partials/cardioform %>
-        </div>
-        <div class="row">
-            <% include ../partials/strengthform %>
         </div>
     </div>
+   
     <% include ../partials/footer %>
+    <script src="/home.js"></script>
 </body>
+
 
 </html>

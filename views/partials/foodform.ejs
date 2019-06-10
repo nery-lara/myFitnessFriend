@@ -37,6 +37,7 @@
                 var formdata = $('#foodform').serializeArray()
                 console.log(formdata)
                 formdata.push({name:"email", value: localStorage.getItem("email")})
+                formdata.push({ name: "date", value: localStorage.getItem("date") })
                 $.ajax({
                     type: 'post',
                     url: '/food',
@@ -49,7 +50,15 @@
                     .not(':button, :submit, :reset, :hidden')
                     .val('')
 
+                var foodlist = document.getElementById('foodlist')
+                var item = document.createElement('li');
+                item.appendChild(document.createTextNode(formdata[0].value));
+                foodlist.appendChild(item);
+                
+
             })
         })
+
+
 
 </script>

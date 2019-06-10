@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 const cardioSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
-    duration: Number,
+    duration: String,
+    distance: Number,
+    time: String,
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 

@@ -1,0 +1,51 @@
+<form id="strengthform" action="/strength" method="post" enctype='application/x-www-form-urlencoded'>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label for="strengthname">Strength Name</label>
+            <input type="text" name="name" id="strengthname" class="form-control" placeholder="strength Name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="weight">Weight </label>
+            <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="sets">Sets</label>
+            <input type="number" name="sets" id="sets" class="form-control" placeholder="Sets">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="reps">Reps</label>
+            <input type="number" name="reps" id="reps" class="form-control" placeholder="Reps">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="time">Time</label>
+            <input type="time" name="time" id="strengthtime" class="form-control" placeholder="Time">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<script>
+    $(function () {
+        $('#strengthform').on('submit', function (e) {
+            e.preventDefault()
+            var formdata = $('#strengthform').serializeArray()
+            console.log(formdata)
+            formdata.push({ name: "email", value: localStorage.getItem("email") })
+            $.ajax({
+                type: 'post',
+                url: '/strength',
+                data: formdata,
+                success: function () {
+                    alert("strength submitted")
+                }
+            })
+            $(':input', '#strengthform')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+
+        })
+    })
+
+</script>

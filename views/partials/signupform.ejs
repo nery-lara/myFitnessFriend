@@ -37,5 +37,15 @@
             </label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign up</button>
+    <button id="signupsubmit" type="submit" class="btn btn-primary">Sign up</button>
 </form>
+
+<script>
+    $("#signupsubmit").click(function () {
+        var email = $("#signupEmail").val();
+        console.log("here")
+        console.log(email)
+        localStorage.setItem("email", email);
+    });
+
+</script>

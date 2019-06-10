@@ -44,6 +44,7 @@
                 .val('')
             var cardiolist = document.getElementById('cardiolist')
             var item = document.createElement('li');
+            item.className += " list-group-item"
             item.appendChild(document.createTextNode(formdata[0].value));
             cardiolist.appendChild(item);
             

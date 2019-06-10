@@ -47,6 +47,7 @@
                 .val('')
             var strengthlist = document.getElementById('strengthlist')
             var item = document.createElement('li');
+            item.className += " list-group-item"
             item.appendChild(document.createTextNode(formdata[0].value));
             strengthlist.appendChild(item);
 

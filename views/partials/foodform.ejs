@@ -52,6 +52,7 @@
 
                 var foodlist = document.getElementById('foodlist')
                 var item = document.createElement('li');
+                item.className += " list-group-item"
                 item.appendChild(document.createTextNode(formdata[0].value));
                 foodlist.appendChild(item);
                 

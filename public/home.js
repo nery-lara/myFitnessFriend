@@ -90,6 +90,8 @@ function nextweek() {
         success: (res) => {
             config.data.datasets[0].data = res.values
             config.data.labels = res.labels
+            config.data.datasets[0].label = 'Weekly Calories'
+            config.options.scales.yAxes[0].scaleLabel.labelString = 'Calories'
             window.weeklyGraph.update();
         }
     })
@@ -113,7 +115,8 @@ function prevweek() {
         success: (res) => {
             config.data.datasets[0].data = res.values
             config.data.labels = res.labels
-            config.options.scales.yAxes[0].scaleLabel.labelString  = 'Calories'
+            config.data.datasets[0].label = 'Weekly Calories'
+            config.options.scales.yAxes[0].scaleLabel.labelString = 'Calories'
             window.weeklyGraph.update();
         }
     })

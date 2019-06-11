@@ -51,10 +51,28 @@
                     .val('')
 
                 var foodlist = document.getElementById('foodlist')
-                var item = document.createElement('li');
-                item.className += " list-group-item"
-                item.appendChild(document.createTextNode(formdata[0].value));
-                foodlist.appendChild(item);
+                
+                console.log(formdata)
+                var tr = document.createElement('tr');
+                var ta = document.createElement('td');
+                ta.appendChild(document.createTextNode(formdata[5].value));
+                tr.appendChild(ta);
+                var tb = document.createElement('td');
+                tb.appendChild(document.createTextNode(formdata[0].value));
+                tr.appendChild(tb);
+                var tc = document.createElement('td');
+                tc.appendChild(document.createTextNode(formdata[1].value));
+                tr.appendChild(tc);
+                var td = document.createElement('td');
+                td.appendChild(document.createTextNode(formdata[2].value));
+                tr.appendChild(td);
+                var te = document.createElement('td');
+                te.appendChild(document.createTextNode(formdata[3].value));
+                tr.appendChild(te);
+                var tf = document.createElement('td');
+                tf.appendChild(document.createTextNode(formdata[4].value));
+                tr.appendChild(tf);
+                foodlist.appendChild(tr);
                 
 
             })

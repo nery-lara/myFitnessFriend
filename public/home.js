@@ -47,7 +47,10 @@ loadData()
 
 var prevarrow = document.getElementById('prevarrow')
 var nextarrow = document.getElementById('nextarrow')
+var prevwarrow = document.getElementById('prevwarrow')
+var nextwarrow = document.getElementById('nextwarrow')
 var datespan = document.getElementById('datespan')
+var weekspan = document.getElementById('weekspan')
 function nextdate() {
     var curDateStr = localStorage.getItem('date')
     var curDate = new Date(curDateStr)
@@ -69,6 +72,58 @@ function prevdate() {
     $("ul").empty()
     loadData()
 }
+
+function nextweek() {
+    var curDateStr = localStorage.getItem('date')
+    var curDate = new Date(curDateStr)
+    var nextDay = new Date(curDate)
+    nextDay.setDate(nextDay.getDate() + 6)
+    weekspan.textContent = curDate.toDateString() + " - " + nextDay.toDateString()
+    localStorage.setItem('date', nextDay.toISOString())
+    $.ajax({
+        url: "/weeklycalories",
+        type: 'post',
+        data: {
+            date: localStorage.getItem('date'),
+            email: localStorage.getItem('email')
+        },
+        success: (res) => {
+            config.data.datasets[0].data = res.values
+            config.data.labels = res.labels
+            window.weeklyGraph.update();
+        }
+    })
+    $("#weekly-pills-calories-tab").trigger('click')
+}
+
+function prevweek() {
+    var curDateStr = localStorage.getItem('date')
+    var curDate = new Date(curDateStr)
+    var prevDay = new Date(curDate)
+    prevDay.setDate(prevDay.getDate() - 6)
+    weekspan.textContent = prevDay.toDateString() + " - " + curDate.toDateString()
+    localStorage.setItem('date', prevDay.toISOString())
+    $.ajax({
+        url: "/weeklycalories",
+        type: 'post',
+        data: {
+            date: localStorage.getItem('date'),
+            email: localStorage.getItem('email')
+        },
+        success: (res) => {
+            config.data.datasets[0].data = res.values
+            config.data.labels = res.labels
+            config.options.scales.yAxes[0].scaleLabel.labelString  = 'Calories'
+            window.weeklyGraph.update();
+        }
+    })
+
+    $("#weekly-pills-calories-tab").trigger('click')
+}
+prevarrow.onclick = prevdate
+prevwarrow.onclick = prevweek
+nextarrow.onclick = nextdate
+nextwarrow.onclick = nextweek
 
 
 

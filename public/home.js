@@ -102,8 +102,10 @@ function prevweek() {
     var curDateStr = localStorage.getItem('date')
     var curDate = new Date(curDateStr)
     var prevDay = new Date(curDate)
+    var prevprevday = new Date(curDate)
     prevDay.setDate(prevDay.getDate() - 6)
-    weekspan.textContent = prevDay.toDateString() + " - " + curDate.toDateString()
+    prevprevday.setDate(prevDay.getDate() - 6)
+    weekspan.textContent = prevprevday.toDateString() + " - " + prevDay.toDateString()
     localStorage.setItem('date', prevDay.toISOString())
     $.ajax({
         url: "/weeklycalories",

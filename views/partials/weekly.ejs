@@ -150,15 +150,7 @@
 
     });
 
-    window.onload = function () {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.weeklyGraph = getNewChart(ctx, config);
-        document.getElementById('weekly-pills-calories-tab').click()
-    };
-
-    function getNewChart(canvas, config) {
-        return new Chart(canvas, config);
-    }
+   
 
 
 

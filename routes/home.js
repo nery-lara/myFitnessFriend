@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 module.exports = function (app) {
-    
+
     app.post('/load',(req, res) => {
         console.log(req.body)
         var currDay = new Date(req.body.date)
@@ -75,7 +75,7 @@ module.exports = function (app) {
                     $gte: startweekday,
                     $lt: nextDay
                 }}
-        }).sort({date: -1}).exec().then(user => { 
+        }).sort({date: -1}).exec().then(user => {
             console.log(user)
             console.log(user.foods)
             var dailycal = {}
@@ -94,7 +94,7 @@ module.exports = function (app) {
             Object.keys(dailycal).forEach(day => {
                 labels.push(day)
                 values.push(dailycal[day])
-                
+
             });
             console.log(dailycal)
             res.status(201).json({

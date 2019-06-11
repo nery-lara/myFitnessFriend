@@ -14,7 +14,7 @@ module.exports = function(app) {
         console.log(req.body)
         User.find({email: req.body.email}).exec().then(user => {
             if(user.length < 1) {
-                return res.status(401).json({
+                return res.status(401).send({
                     message: 'authentication failed'
                 })
             }
@@ -31,7 +31,14 @@ module.exports = function(app) {
                     },'secretkey', {
                         expiresIn: "2h"
                     })
-                    return res.status(200).render('pages/home')
+                    //if the user has completed the second signup page
+                    if(user[0].gender == "None"){
+                      return res.status(201).render('pages/signup2')
+                    }
+                    else{
+                      return res.status(200).render('pages/home')
+                    }
+                    //else
                 }
                 res.status(401).json({
                     message: 'authentication failed'
@@ -62,7 +69,7 @@ module.exports = function(app) {
                         })
                         user.save().then(result => {
                             console.log(result)
-                            res.status(201).render('pages/home')
+                            res.status(201).render('pages/signup2')
                         }).catch(err => {
                             console.log(err)
                             res.status(500).json({

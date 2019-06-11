@@ -266,4 +266,36 @@ module.exports = function (app) {
             console.log(err)
         })
     })
+    app.post('/progress', (req, res) => {
+        console.log(req.body)
+        var currDay = new Date(req.body.date)
+        console.log(currDay.toString())
+        currDay.setHours(0, 0, 0, 0)
+        var nextDay = new Date(currDay)
+        User.findOne({ email: req.body.email }).populate({
+            path: 'weight'
+        }).sort({ date: -1 }).exec().then(user => {
+            console.log(user)
+            var dailyweight = {}
+            for (var i = 0; i < user.exercises.strength.length; i++) {
+                var date = new Date(user.weight[i].date)
+                dailyweight[date.toLocaleDateString()] = user.weight[i].weight
+            }
+            var labels = []
+            var values = []
+            Object.keys(dailyweight).forEach(day => {
+                labels.push(day)
+                values.push(dailyweight[day])
+
+            });
+            console.log(dailyweight)
+            res.status(201).json({
+                labels: labels,
+                values: values
+            })
+        }).catch(err => {
+            console.log('couldnt get user')
+            console.log(err)
+        })
+    })
 }

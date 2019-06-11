@@ -1,0 +1,30 @@
+<form id="weightform" action="/weight" method="post" enctype='application/x-www-form-urlencoded'>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="weight">Weight (lbs)</label>
+            <input type="number" name="weight" id="bodyweight" class="form-control" placeholder="Weight (lbs)">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">log</button>
+</form>
+
+<script>
+    $(function () {
+        $('#weightform').on('submit', function (e) {
+            e.preventDefault()
+            var formdata = $('#weightform').serializeArray()
+            console.log(formdata)
+            formdata.push({ name: "email", value: localStorage.getItem("email") })
+            formdata.push({ name: "date", value: localStorage.getItem("date") })
+            $.ajax({
+                type: 'post',
+                url: '/weight',
+                data: formdata,
+                success: function () {
+                    alert("strength submitted")
+                }
+            })
+        })
+    })
+
+</script>

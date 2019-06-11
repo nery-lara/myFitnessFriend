@@ -1,54 +1,159 @@
-<div class="row">
-    <h2>Weekly </h2>
+<nav class="nav nav-pills nav-fill mb-3" id="weekly-pills-tab" role="tablist">
+
+    <a class="nav-item nav-link active" id="weekly-pills-calories-tab" data-toggle="pill" href="#" role="tab"
+        aria-controls="pills-calories" aria-selected="true">Calories</a>
+
+    <a class="nav-item nav-link" id="weekly-pills-cardio-tab" data-toggle="pill" href="#" role="tab"
+        aria-controls="pills-cardio" aria-selected="false">Cardio Time</a>
+
+    <a class="nav-item nav-link" id="weekly-dist-cardio-tab" data-toggle="pill" href="#" role="tab"
+        aria-controls="pills-cardio" aria-selected="false">Cardio Distance</a>
+
+    <a class="nav-item nav-link" id="weekly-pills-strength-tab" data-toggle="pill" href="#" role="tab"
+        aria-controls="pills-strength" aria-selected="false">Strength</a>
+
+</nav>
+<div class="chart-container">
+    <canvas id="canvas"></canvas>
 </div>
 
-<div class="row">
-    <h2>Progress </h2>
-</div>
-<div class="chart-container">
-    <canvas id="weeklyChart"></canvas>
-</div>
 <script>
-    var ctx = document.getElementById('weeklyChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(231,233,237)'
+    };
+
+    window.randomScalingFactor = function () {
+        return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+    }
+
+
+
+    var config = {
         type: 'bar',
         data: {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             datasets: [{
-                label: 'daily calories',
-                data: [1708, 1906, 2102, 1843, 1905, 2022, 1833],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
+                label: "Weekly Calories",
+                backgroundColor: window.chartColors.red,
+                borderColor: window.chartColors.red,
+                data: [2000, 2000, 2010, 2021, 1820, 2911, 1820],
+                fill: false,
             }]
         },
         options: {
+            responsive: true,
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
             scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Day'
+                    }
+                }],
                 yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Calories'
                     }
                 }]
             }
         }
-    });
-</script>
+    };
 
+    document.getElementById('weekly-pills-calories-tab').addEventListener('click', function () {
+        $.ajax({
+            url: "/weeklycalories",
+            type: 'post',
+            data: {
+                date: localStorage.getItem('date'),
+                email: localStorage.getItem('email')
+            },
+            success: (res) => {
+                config.data.datasets[0].data = res.values
+                config.data.labels = res.labels
+                config.data.datasets[0].label = 'Weekly Calories'
+                config.options.scales.yAxes[0].scaleLabel.labelString = 'Calories'
+                window.weeklyGraph.update();
+            }
+        })
+
+    });
+    document.getElementById('weekly-pills-cardio-tab').addEventListener('click', function () {
+        $.ajax({
+            url: "/weeklycardio",
+            type: 'post',
+            data: {
+                date: localStorage.getItem('date'),
+                email: localStorage.getItem('email')
+            },
+            success: (res) => {
+                config.data.datasets[0].data = res.values
+                config.data.labels = res.labels
+                config.data.datasets[0].label = 'Weekly Cardio Time'
+                config.options.scales.yAxes[0].scaleLabel.labelString = 'Duration (min)'
+                window.weeklyGraph.update();
+            }
+        })
+
+    });
+
+    document.getElementById('weekly-dist-cardio-tab').addEventListener('click', function () {
+        $.ajax({
+            url: "/weeklycardiodistance",
+            type: 'post',
+            data: {
+                date: localStorage.getItem('date'),
+                email: localStorage.getItem('email')
+            },
+            success: (res) => {
+                config.data.datasets[0].data = res.values
+                config.data.labels = res.labels
+                config.data.datasets[0].label = 'Weekly Cardio Dist'
+                config.options.scales.yAxes[0].scaleLabel.labelString = 'Distance (mi)'
+                window.weeklyGraph.update();
+            }
+        })
+
+    });
+
+    document.getElementById('weekly-pills-strength-tab').addEventListener('click', function () {
+        $.ajax({
+            url: "/weeklystrength",
+            type: 'post',
+            data: {
+                date: localStorage.getItem('date'),
+                email: localStorage.getItem('email')
+            },
+            success: (res) => {
+                config.data.datasets[0].data = res.values
+                config.data.labels = res.labels
+                config.data.datasets[0].label = 'Weekly Strength Exercises'
+                config.options.scales.yAxes[0].scaleLabel.labelString = "Strength Exercises"
+                window.weeklyGraph.update();
+            }
+        })
+
+    });
+
+   
+
+
+
+</script>
 <link rel="stylesheet" href="/css/weekly.css">
 <link rel="stylesheet" href="/css/chart.css">

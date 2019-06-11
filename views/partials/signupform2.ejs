@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between" >
+    <a class="navbar-brand " href="#">Fitness Friend</a>
+    <button class="navbar-toggler" id = "goHome" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+ </nav>
+ <div class = container>
+   <form id = "signup2form" action="/signup2" method="post"  enctype='application/x-www-form-urlencoded' style = "padding: 30px">
+       <div class="form-row">
+           <div class="form-group col-md-6">
+               <label for="weight">weight</label>
+               <input type="number"  name="weight" id="weight" class="form-control" placeholder="weight in lbs">
+           </div>
+           <div class="form-group col-md-6">
+               <label for="goals">goals</label>
+               <select name = "goals" class = "form-control" id = "goals">
+                 <option value = "LoseWeight" selected>Lose weight</option>
+                 <option value = "GainMuscle">Gain muscle</option>
+              </select>
+            </div>
+       </div>
+       <div class="form-row">
+           <div class="form-group col-md-6">
+               <label for="gender">gender</label>
+               <select name = "gender" class = "form-control" id = "gender">
+                 <option value = "Male" selected> Male</option>
+                 <option value = "Female">Female</option>
+               </select>
+           </div>
+           <div class="form-group col-md-6">
+               <label for="goals">exercise goal</label>
+               <input type="text" name="exergoals" id="exergoals" class="form-control" placeholder="exercise goal">
+           </div>
+       </div>
+       <div class="form-row">
+           <div class="form-group col-md-6">
+               <label for="height">height</label>
+               <input type="text" name="height" id="height" class="form-control" placeholder="5'4">
+           </div>
+       </div>
+       <div class="form-row">
+           <div class="form-group col-md-6">
+               <label for="actlevs">activity levels</label>
+               <select name = "actlevs" class = "form-control" id = "actlevs">
+                 <option value = "low" selected>low</option>
+                 <option value = "medium">medium</option>
+                 <option value = "high">high</option>
+               </select>
+           </div>
+       </div>
+     <button id="signupsubmit2" type="submit" class="btn btn-primary">Create account!</button>
+   </form>
+ </div>
+
+ <script>
+   $(function () {
+           $('#signup2form').submit(function( eventObj) {
+             $("<input />").attr("type", "hidden").attr("name", "email")
+             .attr("value", localStorage.getItem('email')).appendTo("#signup2form")
+             .on('submit', function (e){});
+             return true;
+           });
+         })
+
+ </script>

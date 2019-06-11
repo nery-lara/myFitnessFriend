@@ -67,16 +67,19 @@ module.exports = function (app) {
     })
     app.post('/weights', (req, res) => {
         User.findOne({email: req.body.email}).populate({
-            path: 'weightlog'
+            path: 'weightlog',
+            options: { sort: { date: 1}}
         }).sort({date: 1}).exec().then(user => {
             var labels = []
             var values = []
             if(user){
                 console.log(user)
                 for (var i = 0; i < user.weightlog.length; i++){
-                    labels.push(user.weightlog[i].date),
-                        values.push(user.weightlog[i].weight)
+                    labels.push(user.weightlog[i].date.toLocaleDateString())
+                    values.push(user.weightlog[i].weight)
                 }
+                labels.sort(function (a, b) {  return new Date(b.date) - new Date(a.date);
+                });
                 res.status(201).json({
                     labels: labels,
                     values: values

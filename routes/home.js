@@ -74,7 +74,8 @@ module.exports = function (app) {
                 date: {
                     $gte: startweekday,
                     $lt: nextDay
-                }}
+                }},
+            options: { sort: { date: 1 } }
         }).sort({date: -1}).exec().then(user => {
             console.log(user)
             console.log(user.foods)
@@ -98,8 +99,8 @@ module.exports = function (app) {
             });
             console.log(dailycal)
             res.status(201).json({
-                labels: labels,
-                values: values
+                labels: labels.reverse(),
+                values: values.reverse()
             })
         }).catch(err => {
             console.log('couldnt get user')
@@ -126,7 +127,8 @@ module.exports = function (app) {
                     $gte: startweekday,
                     $lt: nextDay
                 }
-            }
+            },
+            options: { sort: { date: 1 } }
         }).sort({ date: -1 }).exec().then(user => {
             console.log(user)
             console.log(user.exercises.cardio)
@@ -154,8 +156,8 @@ module.exports = function (app) {
             });
             console.log(dailycardio)
             res.status(201).json({
-                labels: labels,
-                values: values
+                labels: labels.reverse(),
+                values: values.reverse()
             })
         }).catch(err => {
             console.log('couldnt get user')
@@ -182,7 +184,8 @@ module.exports = function (app) {
                     $gte: startweekday,
                     $lt: nextDay
                 }
-            }
+            },
+            options: { sort: { date: 1 } }
         }).sort({ date: -1 }).exec().then(user => {
             console.log(user)
             console.log(user.exercises.cardio)
@@ -206,8 +209,8 @@ module.exports = function (app) {
             });
             console.log(dailycardio)
             res.status(201).json({
-                labels: labels,
-                values: values
+                labels: labels.reverse(),
+                values: values.reverse()
             })
         }).catch(err => {
             console.log('couldnt get user')
@@ -235,7 +238,8 @@ module.exports = function (app) {
                     $gte: startweekday,
                     $lt: nextDay
                 }
-            }
+            },
+            options: { sort: { date: 1 } }
         }).sort({ date: -1 }).exec().then(user => {
             console.log(user)
             console.log(user.exercises.strength)
@@ -258,8 +262,8 @@ module.exports = function (app) {
             });
             console.log(dailystrength)
             res.status(201).json({
-                labels: labels,
-                values: values
+                labels: labels.reverse(),
+                values: values.reverse()
             })
         }).catch(err => {
             console.log('couldnt get user')
@@ -273,7 +277,8 @@ module.exports = function (app) {
         currDay.setHours(0, 0, 0, 0)
         var nextDay = new Date(currDay)
         User.findOne({ email: req.body.email }).populate({
-            path: 'weight'
+            path: 'weight',
+            options: { sort: { date: 1 } }
         }).sort({ date: -1 }).exec().then(user => {
             console.log(user)
             var dailyweight = {}

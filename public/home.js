@@ -51,7 +51,7 @@ function loadData() {
               tc.appendChild(document.createTextNode(data.cardio[i].duration));
               tr.appendChild(tc);
               var td = document.createElement('td');
-              td.appendChild(document.createTextNode(data.foods[i].distance));
+              td.appendChild(document.createTextNode(data.cardio[i].distance));
               tr.appendChild(td);
               cardiolist.appendChild(tr);
             }

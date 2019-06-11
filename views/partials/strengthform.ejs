@@ -45,11 +45,25 @@
             $(':input', '#strengthform')
                 .not(':button, :submit, :reset, :hidden')
                 .val('')
+            console.log(formdata)
             var strengthlist = document.getElementById('strengthlist')
-            var item = document.createElement('li');
-            item.className += " list-group-item"
-            item.appendChild(document.createTextNode(formdata[0].value));
-            strengthlist.appendChild(item);
+            var tr = document.createElement('tr');
+            var ta = document.createElement('td');
+            ta.appendChild(document.createTextNode(formdata[4].value));
+            tr.appendChild(ta);
+            var tb = document.createElement('td');
+            tb.appendChild(document.createTextNode(formdata[0].value));
+            tr.appendChild(tb);
+            var tc = document.createElement('td');
+            tc.appendChild(document.createTextNode(formdata[1].value));
+            tr.appendChild(tc);
+            var td = document.createElement('td');
+            td.appendChild(document.createTextNode(formdata[2].value));
+            tr.appendChild(td);
+            var te = document.createElement('td');
+            te.appendChild(document.createTextNode(formdata[3].value));
+            tr.appendChild(te);
+            strengthlist.appendChild(tr);
 
         })
     })

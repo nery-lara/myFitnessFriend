@@ -10,6 +10,12 @@ const jwt = require('jsonwebtoken')
 
 module.exports = function (app) {
 
+    app.post('/signout', (req, res) => {
+        console.log(req.body)
+        console.log("signing out")
+        res.render('pages/index')
+    })
+
     app.post('/load',(req, res) => {
         console.log(req.body)
         var currDay = new Date(req.body.date)

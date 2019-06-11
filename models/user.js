@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     height: {type: String, default: "5'4"},
     activity_level: {type: String, default: "low"},
     goal: {type: String, default: "lose weight"},
-    exercise_goal: {type: String, default: "None"}, //
+    exercise_goal: {type: String, default: "None"}, 
+    weightlog: [{type: mongoose.Schema.Types.ObjectId, ref: 'Weight'}],
     exercises: {
         cardio:[{type: mongoose.Schema.Types.ObjectId, ref: 'Cardio'}],
         strength: [{type: mongoose.Schema.Types.ObjectId, ref: 'Strength'}]

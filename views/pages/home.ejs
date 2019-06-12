@@ -2,21 +2,21 @@
 <html lang="en">
 <% include ../partials/head %>
 
-<body>
+<body style = "background-color: rgba(50, 115, 220, 0.1);">
     <% include ../partials/homenav %>
-    <nav class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
-    
+    <nav class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style = "padding:10px;">
+
         <a class="nav-item nav-link active" id="pills-daily-tab" data-toggle="pill" href="#pills-daily" role="tab"
             aria-controls="pills-daily" aria-selected="true">Daily</a>
-    
-    
+
+
         <a class="nav-item nav-link" id="pills-weekly-tab"  data-toggle="pill" href="#pills-weekly" role="tab"
             aria-controls="pills-weekly" aria-selected="false">Weekly</a>
-    
-    
+
+
         <a class="nav-item nav-link" id="pills-progress-tab" data-toggle="pill" href="#pills-progress" role="tab"
             aria-controls="pills-progress" aria-selected="false">Progress</a>
-    
+
     </nav>
     <div class="container">
         <div class="row">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    
+
     <% include ../partials/footer %>
     <script src="/home.js"></script>
 </body>

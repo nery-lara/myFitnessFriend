@@ -8,14 +8,14 @@ background-color: #f1f1f1;
 }
 
 .arrow:hover {
-  background-color: rgb(79, 62, 231);
+  background-color: lightblue;
   color: black;
 }
 
 
 
 .round {
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .arrow-container{

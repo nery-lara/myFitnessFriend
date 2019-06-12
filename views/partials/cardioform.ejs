@@ -1,4 +1,4 @@
-<form id="cardioform" action="/cardio" method="post" enctype='application/x-www-form-urlencoded'>
+<form id="cardioform" action="/cardio" method="post" enctype='application/x-www-form-urlencoded'style = "padding-top:10px">
     <div class="form-row">
         <div class="form-group col-12">
             <label for="cardioname">Cardio Name</label>
@@ -20,7 +20,7 @@
             <input type="time" name="time" id="cardiotime" class="form-control" placeholder="Time">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" cclass = "btn btn-outline-light my-2 my-sm-0" style = "background-color:black; color: white; border: white; padding: 10px; float:right;">Add</button>
 </form>
 
 <script>
@@ -58,7 +58,7 @@
             td.appendChild(document.createTextNode(formdata[1].value));
             tr.appendChild(td);
             cardiolist.appendChild(tr);
-            
+
         })
     })
 

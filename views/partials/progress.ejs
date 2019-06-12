@@ -1,7 +1,9 @@
-<div class="row">
-    <h2>Progress </h2>
+<div class="row text-center" >
+  <div class ="col">
+      <h2>Progress</h2>
+  </div>
 </div>
-<div class="chart-container">
+<div class="chart-container" style = "padding:10px;">
     <canvas id="progresscanvas"></canvas>
 </div>
 
@@ -80,9 +82,9 @@
        getallweights()
 
     });
- 
+
     window.onload = function () {
-       
+
         var ctx = document.getElementById("canvas").getContext("2d");
         var ctx1 = document.getElementById("progresscanvas").getContext("2d");
         window.progressGraph = new Chart(ctx1, pconfig);
